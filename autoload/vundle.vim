@@ -38,7 +38,12 @@ endif
 
 
 func! vundle#rc(...) abort
-  let g:bundle_dir = len(a:000) > 0 ? expand(a:1, 1) : expand('$HOME/.vim/bundle', 1)
+ if has("win32") || has("win64") || has("win32unix")
+      let g:bundle_dir = len(a:000) > 0 ? expand(a:1, 1) : expand('$HOME/vimfiles/bundle', 1)
+  else
+      let g:bundle_dir = len(a:000) > 0 ? expand(a:1, 1) : expand('$HOME/.vim/bundle', 1)
+  endif
+
   let g:updated_bundles = []
   let g:vundle_log = []
   let g:vundle_changelog = ['Updated Bundles:']
